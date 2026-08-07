@@ -1,0 +1,200 @@
+# =============================================================================
+# CMS Automation — Field Mapping Configuration
+# =============================================================================
+# STATUS KEY:
+#   mapped        → Excel column confirmed to match a CMS field
+#   placeholder   → CMS field name not yet confirmed (fill in after CMS access)
+#   not_in_excel  → Field exists in CMS but missing from Excel (manual / AI predicted)
+#   skip          → Column exists in Excel but NOT needed by CMS
+#   predict       → Target field for AI model (to be confirmed)
+#
+# HOW TO UPDATE:
+#   1. Get CMS access
+#   2. Open CMS form and inspect each field name / ID
+#   3. Replace all placeholder cms_field values with real ones
+#   4. Update status from "placeholder" to "mapped"
+#   5. Identify which CMS-only fields need AI prediction → set status: predict
+# =============================================================================
+
+excel_to_cms:
+
+  - excel_column: "No."
+    cms_field: "TODO_field_number"
+    data_type: "integer"
+    required: false
+    status: "placeholder"
+    notes: "Row number — may not be needed by CMS"
+
+  - excel_column: "LRD"
+    cms_field: "TODO_lrd"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Confirm what LRD stands for and CMS field name"
+
+  - excel_column: "COUNT"
+    cms_field: "TODO_count"
+    data_type: "integer"
+    required: false
+    status: "placeholder"
+    notes: "Confirm if CMS accepts this as a number field"
+
+  - excel_column: "BIG REGION"
+    cms_field: "TODO_big_region"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Likely a dropdown in CMS — confirm accepted values"
+
+  - excel_column: "REGION"
+    cms_field: "TODO_region"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Likely a dropdown in CMS — confirm accepted values"
+
+  - excel_column: "DISTRICT"
+    cms_field: "TODO_district"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Likely a dropdown — confirm relationship with REGION"
+
+  - excel_column: "STATE"
+    cms_field: "TODO_state"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Likely a dropdown in CMS"
+
+  - excel_column: "SOW"
+    cms_field: "TODO_sow"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Scope of Work — confirm if free text or dropdown in CMS"
+
+  - excel_column: "PCL#/ SCU#"
+    cms_field: "TODO_pcl_scu_number"
+    data_type: "string"
+    required: true
+    status: "placeholder"
+    notes: "MANDATORY field — confirm exact CMS field ID. Critical for automation."
+
+  - excel_column: "Estimated Cost by PM"
+    cms_field: "TODO_estimated_cost"
+    data_type: "float"
+    required: false
+    status: "placeholder"
+    notes: "Currency field — confirm format expected by CMS (e.g. 1000.00 or 1,000.00)"
+
+  - excel_column: "Type Project"
+    cms_field: "TODO_project_type"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Likely a dropdown — confirm accepted values from CMS"
+
+  - excel_column: "FINAL CA"
+    cms_field: "TODO_final_ca"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Protected column (CA PIC only) — confirm if CMS accepts this or if it is read-only"
+
+  - excel_column: "VENDOR"
+    cms_field: "TODO_vendor"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "PM updates this for CA request — confirm if free text or vendor list in CMS"
+
+  - excel_column: "PM"
+    cms_field: "TODO_pm"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Project Manager name — confirm if CMS uses a user lookup or free text"
+
+  - excel_column: "DATA REQUEST BY PM"
+    cms_field: "TODO_data_request_date"
+    data_type: "date"
+    required: false
+    date_format: "DD/MM/YY"
+    status: "placeholder"
+    notes: "Date field — will be converted to CMS accepted format during automation"
+
+  - excel_column: "TYPE OF CA"
+    cms_field: "TODO_ca_type"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Likely a dropdown — confirm accepted CA type values from CMS"
+
+  - excel_column: "DATE CAED"
+    cms_field: "TODO_date_caed"
+    data_type: "date"
+    required: false
+    date_format: "TODO_confirm_format"
+    status: "placeholder"
+    notes: "Confirm date format accepted by CMS"
+
+  - excel_column: "STUDY CAED"
+    cms_field: "TODO_study_caed"
+    data_type: "string"
+    required: false
+    status: "placeholder"
+    notes: "Confirm if free text or dropdown in CMS"
+
+  - excel_column: "Date CA in NCR&CMS by Ismail, Azriah (Interprise)"
+    cms_field: "TODO_date_ca_ncr_cms"
+    data_type: "date"
+    required: false
+    date_format: "TODO_confirm_format"
+    status: "placeholder"
+    notes: "This appears duplicated in Excel — confirm which column is the correct one to use"
+
+
+# =============================================================================
+# CMS-ONLY FIELDS (not in Excel — need to be handled separately)
+# =============================================================================
+# Fill this section once you have CMS access and can see all form fields.
+# For each field here, decide: hardcode a default, derive from Excel data,
+# or flag as the AI prediction target.
+
+cms_only_fields:
+
+  - cms_field: "TODO_cms_field_1"
+    handling: "placeholder"
+    default_value: null
+    status: "not_in_excel"
+    notes: "Fill in after CMS access — inspect every field in the CMS form"
+
+  - cms_field: "TODO_cms_field_2"
+    handling: "placeholder"
+    default_value: null
+    status: "not_in_excel"
+    notes: "Fill in after CMS access"
+
+  - cms_field: "TODO_prediction_target"
+    handling: "ai_predict"
+    default_value: null
+    status: "predict"
+    notes: "TBD — this will be the field the AI model predicts using ACR historical data"
+
+
+# =============================================================================
+# GLOBAL SETTINGS
+# =============================================================================
+
+settings:
+  date_formats:
+    excel_input: "DD/MM/YY"
+    cms_output: "TODO_confirm_with_cms"
+
+  mandatory_columns:
+    - "PCL#/ SCU#"
+
+  skip_if_empty: true
+  log_unmapped_fields: true
+  halt_on_mandatory_missing: true
