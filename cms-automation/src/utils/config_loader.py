@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-CONFIG_PATH = Path(__file__).parent.parent / "config" / "field_mapping.yaml"
+CONFIG_PATH = Path(__file__).parent.parent.parent / "config" / "field_mapping.yaml"
 
 
 def load_config(path: Path = CONFIG_PATH) -> dict:
